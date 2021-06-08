@@ -1,0 +1,45 @@
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="main.js">
+</script>
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+  <h1>Hello Rami!</h1>
+    <p>In order to find your nearby partners please enter your coordinates and specify the range:</p>
+    <p>longitude: <input type="text" ng-model="X"> radians</p>
+    <p>latitude: <input type="text" ng-model="Y"> radians</p>
+    <p>range: <input type="text" ng-model="range"> kms</p>
+    <p> <button ng-click="Click()">Search</button></p>
+      <table>
+      <tr>
+        <th> organization</th>
+        <th> address</th>
+        <th> distance</th>
+      </tr>
+      <tr ng-repeat = "partner in partners | orderBy : 'organization'">
+        <td ><div ng-repeat = "office in partner.offices">
+          <div ng-if="office.distance <= range ">
+            {{partner.organization}}
+          </div>
+        </div>
+        </td>
+        <td> <div ng-repeat = "office in partner.offices">
+          <div ng-if="office.distance <= range ">
+            {{office.address}}
+          </div>
+        </div>
+        </td>
+        <td ><div ng-repeat = "office in partner.offices">
+          <div ng-if="office.distance <= range ">
+            {{office.distance}}
+          </div>
+        </div>
+        </td>
+      </tr>
+    </table>
+</div>
+
+
+</body>
+</html>
